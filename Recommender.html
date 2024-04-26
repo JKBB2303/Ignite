@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Preferences Form</title>
+    <legend class="border-bottom mb-4">Get Your Music Tailored To You</legend>
+</head>
+<body>
+    <h2>Music Preferences Form</h2>
+    <form id="musicForm">
+        <label for="artist">Favorite Artist:</label><br>
+        <input type="text" id="artist" name="artist" required><br>
+
+        <label for="song">Favorite Song:</label><br>
+        <input type="text" id="song" name="song" required><br>
+
+        <label for="genre">Preferred Genre:</label><br>
+        <select id="genre" name="genre">
+            <option value="rock">Rock</option>
+            <option value="pop">Pop</option>
+            <option value="hip-hop">Hip Hop</option>
+            <option value="jazz">Jazz</option>
+            <option value="classical">Classical</option>
+            <option value="electronic">Electronic</option>
+            <!-- Add more options as needed -->
+        </select><br>
+
+        <label for="mood">Current Mood:</label><br>
+        <input type="text" id="mood" name="mood" required><br>
+
+        <label for="likelihood">Likelihood of Adding Favorite Artist (0-10):</label><br>
+        <input type="number" id="likelihood" name="likelihood" min="0" max="10" required><br>
+
+        <label for="satisfaction">Satisfaction with the Form (0-1):</label><br>
+        <input type="number" id="satisfaction" name="satisfaction" min="0" max="1" step="0.01" required><br>
+
+        <input type="button" value="Generate Playlist" onclick="generatePlaylist()">
+    </form>
+
+    <h2>Generated Playlist</h2>
+    <ul id="playlist"></ul>
+
+    <script>
+        function generatePlaylist() {
+            var artist = document.getElementById("artist").value;
+            var song = document.getElementById("song").value;
+            var genre = document.getElementById("genre").value;
+            var mood = document.getElementById("mood").value;
+            var likelihood = parseInt(document.getElementById("likelihood").value);
+            var satisfaction = parseFloat(document.getElementById("satisfaction").value);
+
+            var playlist = document.getElementById("playlist");
+            playlist.innerHTML = ""; // Clear previous playlist
+
+            // Sample playlist generation logic (you can replace it with your own logic)
+            for (var i = 0; i < 5; i++) {
+                var listItem = document.createElement("li");
+                listItem.textContent = "Random Song " + (i + 1);
+                playlist.appendChild(listItem);
+            }
+        }
+    </script>
+</body>
+{% endblock content %}
